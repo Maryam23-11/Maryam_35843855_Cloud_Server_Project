@@ -2,7 +2,7 @@ ICT171 Cloud Server Project and Video Explainer
 
 Student Name: Maryam Parkar 
 
-Student Id: 35843855
+Student ID: 35843855
 
 Webiste Link: https://femmewardrobe.it.com/
 
