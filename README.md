@@ -1,4 +1,4 @@
-ICT171-Cloud-Server-Project and Video Explainer by Maryam Parkar (35843855)
+ICT171 Cloud Server Project and Video Explainer by Maryam Parkar (35843855)
 
 Webiste Link: https://femmewardrobe.it.com/
 
