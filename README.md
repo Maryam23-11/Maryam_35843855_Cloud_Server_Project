@@ -19,7 +19,7 @@ Femme Wardrobe is a fully functional e-commerce website built to showcase and se
 Project Overview:
 The website offers a fun shopping experience, where users can browse, view, and engage with different fashion items. It is a multipage website which contains the homepage, shop page, contact page and about us page. 
 
-I deployed an EC2 server on AWS, installed the Apache Web Server and configured the use of SSL certificates using Command Prompt so that I can have a secure HTTPS connection to the Namecheap domain.
+I deployed my website on an EC2 server on AWS, installed the Apache Web Server and configured the use of SSL certificates using Command Prompt so that I can have a secure HTTPS connection to the Namecheap domain.
 
 Key Features:
 1) Homepage with promotional banners and featured product sections
