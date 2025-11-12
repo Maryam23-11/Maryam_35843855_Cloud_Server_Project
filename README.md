@@ -10,6 +10,8 @@ IP Address: 3.28.122.230
 
 Video Explainer Link: 
 
+
+
 Femme Wardrobe – E-Commerce Website
 
 Femme Wardrobe is a fully functional e-commerce website built to showcase and sell women’s fashion products online. It is built with HTML, CSS, and JavaScript and is hosted on Amazon EC2 with a personal domain bought at Namecheap. 
