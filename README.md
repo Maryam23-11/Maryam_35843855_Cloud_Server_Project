@@ -30,5 +30,11 @@ Technologies Used:
 7) SSL – free SSL installed via Command Prompt
 8) GitHub – version control and project submission
 
+Deployment Summary:
+1) Created and configured an Amazon EC2 instance running Amazon Linux
+2) Installed Apache Web Server and transferred project files using SCP (Secure Copy Protocol)
+3) Linked the Namecheap domain to the EC2 instance using public IP and DNS records
+$) Generated and installed a free SSL certificate using Certbot through Command Prompt
+5) Verified secure website access via HTTPS and tested all pages for functionality
 
 
