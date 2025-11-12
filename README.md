@@ -9,7 +9,7 @@ Femme Wardrobe – E-Commerce Website
 Femme Wardrobe is a fully functional e-commerce website built to showcase and sell women’s fashion products online. It is built with HTML, CSS, and JavaScript and is hosted on Amazon EC2 with a personal domain bought at Namecheap. 
 
 Project Overview:
-The website provides an engaging shopping experience, allowing users to browse, view, and interact with various fashion products. It features multiple pages, including a homepage, product listings, and a contact page, all designed to be visually appealing and user-friendly. The website offers a fun shopping experience, where users can browse, view, and engage with different fashion items. It is a multipage website which contains the homepage, shop page, contact page and about us page. 
+The website offers a fun shopping experience, where users can browse, view, and engage with different fashion items. It is a multipage website which contains the homepage, shop page, contact page and about us page. 
 
 I deployed an EC2 server on AWS, installed the Apache Web Server and configured the use of SSL certificates using Command Prompt so that I can have a secure HTTPS connection to the Namecheap domain.
 
