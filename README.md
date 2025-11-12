@@ -1,6 +1,10 @@
-ICT171 Cloud Server Project and Video Explainer by Maryam Parkar (35843855)
+ICT171 Cloud Server Project and Video Explainer 
 
+Student Name: Maryam Parkar 
+Student Id: 35843855
 Webiste Link: https://femmewardrobe.it.com/
+IP Address: 3.28.122.230
+Video Explainer Link: 
 
 Femme Wardrobe – E-Commerce Website
 
