@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Femme Wardrobe</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Pop-up modal styles */
+        #popupMessage {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            border: 2px solid #088178;
+            padding: 30px 50px;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        #popupMessage.show {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translate(-50%, -60%); }
+            to { opacity: 1; transform: translate(-50%, -50%); }
+        }
+
+        #popupMessage button {
+            background-color: #088178;
+            color: #fff;
+            border: none;
+            padding: 10px 25px;
+            margin-top: 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        #popupOverlay {
+            display: none;
+            position: fixed;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            background: rgba(0,0,0,0.4);
+            z-index: 900;
+        }
+
+        #popupOverlay.show {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section id="header">
+        <a href="#"><img src="image/logo.png" class="logo" alt="Company Logo"></a>
+        <div>
+            <ul id="navbar">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a class="active" href="contact.html">Contact Us</a></li>
+                <li><a href="cart.html"><i class="fas fa-shopping-cart"></i></a></li>
+                <a href="#" id="close"><i class="far fa-times"></i></a>
+            </ul>
+        </div>
+    </section>
+
+    <section id="page-header" class="about-header">
+        <h2>Contact Us</h2>
+        <p>We value your feedback. Reach out to us for any inquiries or support, and our team will assist you promptly.</p>
+    </section>
+
+    <section id="contact-details" class="section-p1">
+        <div class="details">
+            <span>GET IN TOUCH</span>
+            <h2>Visit our agency location or contact us today</h2>
+            <h3>Head Office</h3>
+            <div>
+                <li>
+                    <i class="fal fa-map"></i>
+                    <p>Sheikh Mohammed Bin Rashed Boulevard, Downtown Dubai, United Arab Emirates</p>
+                </li>
+                <li>
+                    <i class="far fa-envelope"></i>
+                    <p>FemmeWardrobe@gmail.com</p>
+                </li>
+                <li>
+                    <i class="fal fa-phone"></i>
+                    <p>+971 507795477</p>
+                </li>
+                <li>
+                    <i class="fal fa-clock"></i>
+                    <p>Monday to Saturday: 9:00am to 11:00pm</p>
+                </li>
+            </div>
+        </div>
+
+        <div class="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3610.307433002596!2d55.276389874300655!3d25.192852777713767!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f682a89b5f3a3%3A0x5c7d81aef3976acd!2sSheikh%20Mohammed%20bin%20Rashid%20Blvd%20-%20Burj%20Khalifa%20-%20Dubai!5e0!3m2!1sen!2sae!4v1762436504676!5m2!1sen!2sae" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </section>
+
+    <section id="form-details">
+        <form id="contactForm">
+            <span>Leave a Message</span>
+            <h2>We love to hear from you</h2>
+            <input type="text" placeholder="Your Name" name="name" required>
+            <input type="email" placeholder="Email" name="email" required>
+            <input type="text" placeholder="Subject" name="subject">
+            <textarea name="message" cols="30" rows="10" placeholder="Your Message" required></textarea>
+            <button class="normal" type="submit">Submit</button>
+        </form>
+
+        <div class="people">
+            <div>
+                <img src="Image/people/1.png" alt="">
+                <p><span>John Doe</span> Senior Marketing Manager <br> Phone: +971 506032409 <br> Email: johndoe@gmail.com</p>
+            </div>
+            <div>
+                <img src="Image/people/2.png" alt="">
+                <p><span>William Smith</span> Senior Marketing Manager <br> Phone: +971 507022907 <br> Email: williamsmith@gmail.com</p>
+            </div>
+            <div>
+                <img src="Image/people/3.png" alt="">
+                <p><span>Emma Stone</span> Senior Marketing Manager <br> Phone: +971 508820421 <br> Email: emmastone@gmail.com</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pop-up overlay and message -->
+    <div id="popupOverlay"></div>
+    <div id="popupMessage">
+        <h3>Thank you!</h3>
+        <p>Your message has been sent successfully.</p>
+        <button id="closePopup">Close</button>
+    </div>
+
+    <footer class="section-p1">
+        <!-- Footer content stays the same -->
+    </footer>
+
+    <script>
+        const form = document.getElementById('contactForm');
+        const popup = document.getElementById('popupMessage');
+        const overlay = document.getElementById('popupOverlay');
+        const closeBtn = document.getElementById('closePopup');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent form submission
+            popup.classList.add('show');
+            overlay.classList.add('show');
+            form.reset();
+        });
+
+        closeBtn.addEventListener('click', function() {
+            popup.classList.remove('show');
+            overlay.classList.remove('show');
+        });
+
+        overlay.addEventListener('click', function() {
+            popup.classList.remove('show');
+            overlay.classList.remove('show');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Femme Wardrobe - Textured Long Sleeves Top</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <section id="header">
+        <a href="#"><img src="image/logo.png" class="logo" alt="Company Logo"></a>
+
+        <div>
+            <ul id="navbar">
+                <li><a href="index.html">Home</a></li>
+                <li><a class="active" href="shop.html">Shop</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="cart.html"><i class="fas fa-shopping-cart"></i></a></li>
+                <a href="#" id="close"><i class="far fa-times"></i></a>
+            </ul>
+        </div>
+    </section>
+
+    <section id="prodetails" class="section-p1">
+        <div class="single-pro-image">
+            <img src="Image/smallimages/f18.jpg" width="100%" id="MainImg" alt="">
+
+            <div class="small-img-group">
+                <div class="small-img-col">
+                    <img src="Image/smallimages/f19.jpg" width="100%" class="small-img" alt="">
+                </div>
+                <div class="small-img-col">
+                    <img src="Image/smallimages/f20.jpg" width="100%" class="small-img" alt="">
+                </div>
+                <div class="small-img-col">
+                    <img src="Image/smallimages/f21.jpg" width="100%" class="small-img" alt="">
+                </div>
+            </div>
+        </div>
+
+        <div class="single-pro-details">
+            <h4>Principles</h4>
+            <h3>Textured Long Sleeves Top</h3>
+            <h4>50 د.إ</h4>
+
+            <select>
+                <option>Select Size</option>
+                <option>Large</option>
+                <option>Medium</option>
+                <option>Small</option>
+            </select>
+
+            <input type="number" value="1" min="1">
+
+            <!-- ✅ Add to Cart Button -->
+            <button class="normal add-to-cart"
+                data-name="Textured Long Sleeves Top"
+                data-price="50"
+                data-image="Image/smallimages/f18.jpg">
+                Add to Cart
+            </button>
+
+            <h4>Product Details</h4>
+            <span>
+                A stylish long sleeve top crafted from textured woven fabric for added visual interest.
+                Features an elegant V-neck collar, button cuffs on the sleeves, and a relaxed fit for
+                comfortable wear. Perfect for casual or smart-casual occasions, offering a flattering
+                and polished look.
+            </span>
+        </div>
+    </section>
+
+    <footer class="section-p1">
+        <div class="col">
+            <h4>Contact Us</h4>
+            <p><strong>Address:</strong> Sheikh Mohammed Bin Rashed Boulevard, Downtown Dubai, United Arab Emirates</p>
+            <p><strong>Phone:</strong> +971 507795477</p>
+        </div>
+
+        <div class="col">
+            <h4>About</h4>
+            <a href="#">About Us</a>
+            <a href="#">Delivery Information</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms & Condition</a>
+            <a href="#">Contact Us</a>
+        </div>
+
+        <div class="col">
+            <h4>My Account</h4>
+            <a href="#">Sign In</a>
+            <a href="#">View Cart</a>
+            <a href="#">My WishList</a>
+            <a href="#">Track My Order</a>
+            <a href="#">Help</a>
+        </div>
+
+        <div class="col install">
+            <h4>Install App</h4>
+            <p>From App Store or Google Play</p>
+            <div class="row">
+                <img src="./Image/pay/app.jpg" alt="">
+                <img src="./Image/pay/play.jpg" alt="">
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>Copyright © 2025 FemmeWardrobe | Designed by Maryam</p>
+        </div>
+    </footer>
+
+    <!-- ✅ IMAGE SWITCH SCRIPT -->
+    <script>
+        const MainImg = document.getElementById("MainImg");
+        const smallimg = document.getElementsByClassName("small-img");
+
+        for (let i = 0; i < smallimg.length; i++) {
+            smallimg[i].onclick = function () {
+                MainImg.src = smallimg[i].src;
+            }
+        }
+    </script>
+
+    <!-- ✅ ADD TO CART SYSTEM -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const cartCountElement = document.getElementById("cart-count");
+
+            function getCart() {
+                return JSON.parse(localStorage.getItem("cart")) || [];
+            }
+
+            function saveCart(cart) {
+                localStorage.setItem("cart", JSON.stringify(cart));
+            }
+
+            function updateCartCount() {
+                const cart = getCart();
+                const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+                if (cartCountElement) cartCountElement.textContent = totalQuantity;
+            }
+
+            updateCartCount();
+
+            document.querySelectorAll(".add-to-cart").forEach(button => {
+                button.addEventListener("click", (e) => {
+                    e.preventDefault();
+
+                    const product = {
+                        name: button.dataset.name,
+                        price: parseFloat(button.dataset.price),
+                        image: button.dataset.image,
+                        quantity: 1
+                    };
+
+                    const cart = getCart();
+                    const existingProduct = cart.find(item => item.name === product.name);
+
+                    if (existingProduct) {
+                        existingProduct.quantity += 1;
+                    } else {
+                        cart.push(product);
+                    }
+
+                    saveCart(cart);
+                    updateCartCount();
+                    window.location.href = "cart.html";
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>

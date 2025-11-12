@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Femme Wardrobe - LC Waikiki Polka Dots Long Sleeves Pajama Set</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <section id="header">
+        <a href="#"><img src="image/logo.png" class="logo" alt="Company Logo"></a>
+
+        <div>
+            <ul id="navbar">
+                <li><a href="index.html">Home</a></li>
+                <li><a class="active" href="shop.html">Shop</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="cart.html"><i class="fas fa-shopping-cart"></i></a></li>
+                <a href="#" id="close"><i class="far fa-times"></i></a>
+            </ul>
+        </div>
+    </section>
+
+    <section id="prodetails" class="section-p1">
+
+        <div class="single-pro-image">
+            <img src="Image/smallimages/f66.jpg" width="100%" id="MainImg" alt="">
+
+            <div class="small-img-group">
+                <div class="small-img-col">
+                    <img src="Image/smallimages/f67.jpg" width="100%" class="small-img" alt="">
+                </div>
+                <div class="small-img-col">
+                    <img src="Image/smallimages/f68.jpg" width="100%" class="small-img" alt="">
+                </div>
+                <div class="small-img-col">
+                    <img src="Image/smallimages/f69.jpg" width="100%" class="small-img" alt="">
+                </div>
+                <div class="small-img-col">
+                    <img src="Image/smallimages/f70.jpg" width="100%" class="small-img" alt="">
+                </div>
+            </div>
+        </div>
+
+        <div class="single-pro-details">
+            <h4>LC Waikiki</h4>
+            <h3>Polka Dots Long Sleeves Pajama Set</h3>
+            <h4>70 د.إ</h4>
+
+            <select>
+                <option>Select Size</option>
+                <option>Large</option>
+                <option>Medium</option>
+                <option>Small</option>
+            </select>
+
+            <input type="number" value="1" min="1">
+
+            <!-- Add to Cart Button -->
+            <button class="normal add-to-cart"
+                data-name="LC Waikiki Polka Dots Long Sleeves Pajama Set"
+                data-price="70"
+                data-image="Image/smallimages/f66.jpg">
+                Add to Cart
+            </button>
+
+            <h4>Product Details</h4>
+            <span>
+                The LC Waikiki Polka Dots Long Sleeves Pajama Set features a playful polka dot pattern on a comfortable, soft fabric designed for relaxing at home. The set includes a long-sleeve top and matching pants, offering a cozy fit with an elastic waistband for ease of wear and comfort during sleep.
+            </span>
+        </div>
+
+    </section>
+
+    <footer class="section-p1">
+        <div class="col">
+            <h4>Contact Us</h4>
+            <p><strong>Address:</strong> Sheikh Mohammed Bin Rashed Boulevard, Downtown Dubai, United Arab Emirates</p>
+            <p><strong>Phone:</strong> +971 507795477</p>
+        </div>
+
+        <div class="col">
+            <h4>About</h4>
+            <a href="#">About Us</a>
+            <a href="#">Delivery Information</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms & Condition</a>
+            <a href="#">Contact Us</a>
+        </div>
+
+        <div class="col">
+            <h4>My Account</h4>
+            <a href="#">Sign In</a>
+            <a href="#">View Cart</a>
+            <a href="#">My WishList</a>
+            <a href="#">Track My Order</a>
+            <a href="#">Help</a>
+        </div>
+
+        <div class="col install">
+            <h4>Install App</h4>
+            <p>From App Store or Google Play</p>
+            <div class="row">
+                <img src="./Image/pay/app.jpg" alt="">
+                <img src="./Image/pay/play.jpg" alt="">
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>Copyright © 2025 FemmeWardrobe | Designed by Maryam</p>
+        </div>
+    </footer>
+
+    <!-- IMAGE SWITCH SCRIPT -->
+    <script>
+        const MainImg = document.getElementById("MainImg");
+        const smallimg = document.getElementsByClassName("small-img");
+
+        for (let i = 0; i < smallimg.length; i++) {
+            smallimg[i].onclick = function () {
+                MainImg.src = smallimg[i].src;
+            }
+        }
+    </script>
+
+    <!-- ADD TO CART SCRIPT -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+
+            function getCart() {
+                return JSON.parse(localStorage.getItem("cart")) || [];
+            }
+
+            function saveCart(cart) {
+                localStorage.setItem("cart", JSON.stringify(cart));
+            }
+
+            function updateCartCount() {
+                const cart = getCart();
+                const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+                const cartCountElement = document.getElementById("cart-count");
+                if (cartCountElement) cartCountElement.textContent = totalQuantity;
+            }
+
+            updateCartCount();
+
+            document.querySelectorAll(".add-to-cart").forEach(button => {
+                button.addEventListener("click", (e) => {
+                    e.preventDefault();
+
+                    const product = {
+                        name: button.dataset.name,
+                        price: parseFloat(button.dataset.price),
+                        image: button.dataset.image,
+                        quantity: 1
+                    };
+
+                    const cart = getCart();
+                    const existingProduct = cart.find(item => item.name === product.name);
+
+                    if (existingProduct) {
+                        existingProduct.quantity += 1;
+                    } else {
+                        cart.push(product);
+                    }
+
+                    saveCart(cart);
+                    updateCartCount();
+
+                    window.location.href = "cart.html";
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>

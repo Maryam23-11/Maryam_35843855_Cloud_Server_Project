@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Femme Wardrobe</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<section id="header">
+    <a href="#"><img src="image/logo.png" class="logo" alt="Company Logo"></a>
+    <div>
+        <ul id="navbar">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+           <li>
+    <a class="active" href="cart.html">
+        <i class="fas fa-shopping-cart"></i>
+        <span id="cart-count">0</span>
+    </a>
+</li>
+>
+            <a href="#" id="close"><i class="far fa-times"></i></a>
+        </ul>
+    </div>
+</section>
+
+<section id="page-header" class="about-header">
+    <h2>Your Shopping Cart</h2>
+    <p>Review your selected items, make any changes, and proceed to checkout for a seamless shopping experience.</p>
+</section>
+
+<section id="cart" class="section-p1">
+    <table width="100%">
+        <thead>
+            <tr>
+                <th>Remove</th>
+                <th>Image</th>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+        <tbody id="cart-body">
+            <!-- Cart items will be dynamically added here -->
+        </tbody>
+    </table>
+</section>
+
+<section id="cart-add" class="section-p1">
+    <div id="coupon">
+        <h3>Apply Coupon</h3>
+        <div>
+            <input type="text" placeholder="Enter Your Coupon">
+            <button class="normal">Apply</button>
+        </div>
+    </div>
+
+    <div id="Subtotal">
+        <h3>Cart Totals</h3>
+        <table>
+            <tr>
+                <td>Cart Subtotal</td>
+                <td id="cart-subtotal">0 د.إ</td>
+            </tr>
+            <tr>
+                <td>Shipping</td>
+                <td>Free</td>
+            </tr>
+            <tr>
+                <td><strong>Total</strong></td>
+                <td id="cart-total"><strong>0 د.إ</strong></td>
+            </tr>
+        </table>
+       <button class="proceed-btn" onclick="window.location.href='checkout.html'">Proceed to Checkout</button>
+
+
+    </div>
+</section>
+
+<footer class="section-p1">
+    <!-- Keep your footer as is -->
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const cartTableBody = document.getElementById("cart-body");
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    cartTableBody.innerHTML = "";
+
+    let total = 0;
+
+    cart.forEach((item, index) => {
+        let subtotal = item.price * item.quantity;
+        total += subtotal;
+
+        let row = document.createElement("tr");
+        row.innerHTML = `
+            <td><a href="#" class="remove" data-index="${index}"><i class="far fa-times-circle"></i></a></td>
+            <td><img src="${item.image}" alt="${item.name}"></td>
+            <td>${item.name}</td>
+            <td>${item.price} د.إ</td>
+            <td><input type="number" value="${item.quantity}" min="1" data-index="${index}"></td>
+            <td>${subtotal} د.إ</td>
+        `;
+        cartTableBody.appendChild(row);
+    });
+
+    // Update totals
+    document.getElementById("cart-subtotal").textContent = total + " د.إ";
+    document.getElementById("cart-total").textContent = total + " د.إ";
+
+    // Remove item
+    cartTableBody.addEventListener("click", (e) => {
+        if(e.target.closest(".remove")) {
+            let index = e.target.closest(".remove").dataset.index;
+            cart.splice(index, 1);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            location.reload();
+        }
+    });
+
+    // Update quantity
+    cartTableBody.addEventListener("change", (e) => {
+        if(e.target.tagName === "INPUT") {
+            let index = e.target.dataset.index;
+            cart[index].quantity = Number(e.target.value);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            location.reload();
+        }
+    });
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    // Get cart from localStorage
+    function getCart() {
+        return JSON.parse(localStorage.getItem("cart")) || [];
+    }
+
+    // Save cart to localStorage
+    function saveCart(cart) {
+        localStorage.setItem("cart", JSON.stringify(cart));
+    }
+
+    // Update cart badge count
+    function updateCartCount() {
+        const cart = getCart();
+        const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+        const cartCountElement = document.getElementById("cart-count");
+        if (cartCountElement) {
+            cartCountElement.textContent = totalQuantity;
+        }
+    }
+
+    // Initial update when page loads
+    updateCartCount();
+
+    // Add to Cart functionality
+    const cartButtons = document.querySelectorAll(".add-to-cart");
+    cartButtons.forEach(button => {
+        button.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation(); // prevent parent click if exists
+
+            const product = {
+                name: button.getAttribute("data-name"),
+                price: parseFloat(button.getAttribute("data-price")),
+                image: button.getAttribute("data-image"),
+                quantity: 1
+            };
+
+            let cart = getCart();
+            const existingProduct = cart.find(item => item.name === product.name);
+
+            if (existingProduct) {
+                existingProduct.quantity += 1;
+            } else {
+                cart.push(product);
+            }
+
+            saveCart(cart);
+            updateCartCount(); // update badge immediately
+            alert(`${product.name} has been added to your cart!`);
+        });
+    });
+});
+</script>
+
+
+</body>
+</html>
