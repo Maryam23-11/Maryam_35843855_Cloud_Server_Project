@@ -1,6 +1,6 @@
 ICT171 Cloud Server Project and Video Explainer 
 
-Student Name: Maryam Parkar 
+Student Name: Maryam Kaiyum Parkar 
 
 Student ID: 35843855
 
